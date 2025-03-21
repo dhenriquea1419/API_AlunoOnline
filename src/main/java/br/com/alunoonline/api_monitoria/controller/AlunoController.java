@@ -25,12 +25,26 @@ public class AlunoController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Aluno> listAllAlunos(){
+
         return alunoService.listAllAlunos();
     }
 
     @GetMapping("/{idAluno}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<Aluno> searchAlunoById(@PathVariable Long idAluno){
+
         return alunoService.searchAlunoById(idAluno);
+    }
+
+    @DeleteMapping("/{idAluno}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAlunoById(@PathVariable Long idAluno){
+        alunoService.deleteAlunoById(idAluno);
+    }
+
+    @PutMapping("/{idAluno}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateAluno (@PathVariable Long idAluno, @RequestBody Aluno aluno){
+        alunoService.updateAlunoById(idAluno, aluno);
     }
 }

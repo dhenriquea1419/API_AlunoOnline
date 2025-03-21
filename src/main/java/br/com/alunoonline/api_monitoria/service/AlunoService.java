@@ -17,6 +17,7 @@ public class AlunoService {
     AlunoRepository alunoRepository;
 
     public void createAluno(Aluno aluno){
+
         alunoRepository.save(aluno);
     }
 
@@ -28,7 +29,7 @@ public class AlunoService {
         return alunoRepository.findById(idAluno);
     }
 
-    public void deleteAlunoById(Long idAluno, Aluno aluno){
+    public void deleteAlunoById(Long idAluno){
         alunoRepository.deleteById(idAluno);
     }
 
