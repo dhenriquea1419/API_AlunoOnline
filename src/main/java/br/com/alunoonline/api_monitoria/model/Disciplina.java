@@ -21,6 +21,6 @@ public class Disciplina {
     private String nomeDisciplina;
 
     @ManyToOne
-    @JoinColumn(name = "PROFESSOR_id_professor")
+    @JoinColumn(name = "PROFESSOR_id_professor", nullable = false)
     private Professor professor;
 }

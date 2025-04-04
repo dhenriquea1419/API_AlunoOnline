@@ -1,11 +1,13 @@
 package br.com.alunoonline.api_monitoria.service;
 
 import br.com.alunoonline.api_monitoria.model.Disciplina;
+import br.com.alunoonline.api_monitoria.model.Professor;
 import br.com.alunoonline.api_monitoria.repository.DisciplinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DisciplinaService {
@@ -18,6 +20,6 @@ public class DisciplinaService {
     }
 
     public List<Disciplina> listarDisciplinaPorIdProfessor(Long idProfessor){
-        return disciplinaRepository.findByIdProfessor(idProfessor);
+        return disciplinaRepository.findByProfessorIdProfessor(idProfessor);
     }
 }
