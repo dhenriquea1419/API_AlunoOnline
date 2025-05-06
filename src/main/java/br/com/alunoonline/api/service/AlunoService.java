@@ -17,6 +17,7 @@ public class AlunoService {
     AlunoRepository alunoRepository;
 
     public void createAluno(Aluno aluno){
+
         alunoRepository.save(aluno);
     }
 
@@ -33,25 +34,18 @@ public class AlunoService {
     }
 
     public void updateAlunoById(Long idAluno, Aluno aluno){
-        //Primeiro passo: ver se o aluno existe no bd;
         Optional<Aluno> alunoDataBase = searchAlunoById(idAluno);
-        //E se não existir esse aluno?
 
         if (alunoDataBase.isEmpty()){
-            //lança uma nova exceção
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Aluno não encontrado do banco de dados");
         }
-        // Se chegar aqui, significa que existe aluno com esse id.
-        //vou armazena-lo em uma variavel para depois edita-lo
-        Aluno alunoEdit = alunoDataBase.get();
 
-        //Com esse aluno para ser editado acima, faço os sets necessários para atualizar os atributos dele.
+        Aluno alunoEdit = alunoDataBase.get();
 
         alunoEdit.setNomeAluno(aluno.getNomeAluno());
         alunoEdit.setCpfAluno(aluno.getCpfAluno());
         alunoEdit.setEmailAluno(aluno.getEmailAluno());
 
-        //com o aluno totalmente editado acima, eu DEVOLVO ele atualizado para o bd
         alunoRepository.save(alunoEdit);
     }
 

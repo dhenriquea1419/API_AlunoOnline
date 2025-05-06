@@ -17,10 +17,13 @@ public class Disciplina {
     @Column(name = "id_disciplina")
     private Long idDisciplina;
 
-    @Column(name = "nome_disciplina", nullable = false)
+    @Column(name = "nome_disciplina")
     private String nomeDisciplina;
 
+
+    private Integer cargaHoraria;
+
     @ManyToOne
-    @JoinColumn(name = "PROFESSOR_id_professor", nullable = false)
+    @JoinColumn(name = "professor_id")
     private Professor professor;
 }
