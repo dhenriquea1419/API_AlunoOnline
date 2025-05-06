@@ -3,12 +3,14 @@ package br.com.alunoonline.api.controller;
 import br.com.alunoonline.api.model.Professor;
 import br.com.alunoonline.api.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@SpringBootApplication
 @RestController
 @RequestMapping("/professores")
 public class ProfessorController {
@@ -35,13 +37,13 @@ public class ProfessorController {
     }
 
     @DeleteMapping("/{idProfessor}")
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarProfessor(@PathVariable Long idProfessor){
         professorService.deletarProfessor(idProfessor);
     }
 
     @PutMapping("/{idProfessor}")
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizarProfessor(@PathVariable Long idProfessor, @RequestBody Professor professor){
         professorService.atualizarProfessor(idProfessor, professor);
     }

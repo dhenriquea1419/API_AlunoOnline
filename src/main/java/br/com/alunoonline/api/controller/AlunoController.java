@@ -25,6 +25,7 @@ public class AlunoController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Aluno> listAllAlunos(){
+
         return alunoService.listAllAlunos();
     }
 

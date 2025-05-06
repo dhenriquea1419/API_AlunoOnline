@@ -3,6 +3,7 @@ package br.com.alunoonline.api.service;
 import br.com.alunoonline.api.model.Professor;
 import br.com.alunoonline.api.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -29,7 +30,14 @@ public class ProfessorService {
     }
 
     public void deletarProfessor(Long idProfessor){
-        professorRepository.deleteById(idProfessor);
+        Professor professor = professorRepository.findById(idProfessor)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Professor não encontrado"));
+
+        try {
+            professorRepository.delete(professor);
+        } catch (DataIntegrityViolationException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Professor vinculado a outra entidade e não pode ser excluído.");
+        }
     }
 
     public void atualizarProfessor(Long idProfessor, Professor professor){
@@ -47,5 +55,4 @@ public class ProfessorService {
 
         professorRepository.save(professorEdit);
     }
-
 }
